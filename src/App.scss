@@ -17,6 +17,10 @@ button {
 	cursor: pointer;
 }
 
+input {
+	border: none;
+}
+
 h1,
 h2,
 h3,
@@ -157,32 +161,74 @@ h4 {
 		margin-top: 10px;
 		margin-bottom: 50px;
 	}
+
+	.view-all-button {
+		padding: 15px 0;
+		width: 180px;
+		font-weight: 500;
+		margin: 40px;
+		z-index: 1;
+		position: relative;
+		font-size: inherit;
+		font-family: inherit;
+		background-color: #fff;
+		color: #E76F51;
+		border: 1px solid #E76F51;
+		border-radius: 5px;
+
+		&::before {
+			content: '';
+			z-index: -1;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-color: #E76F51;
+			transform-origin: center right;
+			transform: scaleX(0);
+			transition: transform 0.45s ease-in-out;
+		}
+		
+		&:hover {
+			cursor: pointer;
+			color: #fff;
+			
+			&::before {
+				transform-origin: center left;
+				transform: scaleX(1);
+			}
+		}
+	}
 }
 
 .destinations-cards-container {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	grid-template-rows: auto;
 	align-items: center;
 	justify-items: center;
-	row-gap: 20px;
-	max-width: 1600px;
+	row-gap: 50px;
+	max-width: 1400px;
 	margin: 0 auto;
 
 	.destinations-card {
 		display: flex;
 		flex-direction: column;
 		background-color: #ffffff;
-		width: 300px;
+		width: 285px;
 		max-height: 450px;
 		padding: 20px 30px;
 		box-sizing: border-box;
 		border-radius: 10px;
-
-		> div:nth-child(1) {
+		
+		.card-image {
 			width: 100%;
 			height: 150px;
-			box-sizing: border-box;
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+			border-radius: 10px;
 		}
 
 		h4 {
@@ -208,5 +254,58 @@ h4 {
 				transform: scale(1.1);
 			}
 		}
+	}
+}
+
+.subscribe-section {
+	margin: 40px auto;
+	color: #3B3735;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+
+	h1 {
+		font-size: 2em;
+	}
+
+	p {
+		max-width: 400px;
+		margin-top: 10px;
+		margin-bottom: 20px;
+	}
+
+	.input-container {
+		position: relative;
+		display: inline-block;
+
+		.mail-icon {
+			position: absolute;
+			left: 15px;
+			top: 15px;
+		}
+
+		.send-icon {
+			width: 18px;
+		}
+
+		button {
+			width: 38px;
+			height: 38px;
+			position: absolute;
+			right: 10px;
+			top: 8px;
+			background-color: #E76F51;
+			box-shadow: 0 0 10px 2px #e76f5166;
+			padding: 10px;
+			border-radius: 15px;
+		}
+	}
+
+	input {
+		padding: 5px 30px;
+		border-radius: 10px;
+		width: 280px;
+		height: 45px;
+		text-indent: 20px;
 	}
 }
