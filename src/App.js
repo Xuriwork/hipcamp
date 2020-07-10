@@ -1,12 +1,18 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
-import './App.scss';
 import { perksData, destinationsList } from './utils/data';
+import cogoToast from 'cogo-toast';
 
 import LocationMarksIcon from './assets/icons/location-to-location-icon.svg';
 import Tent from './assets/images/tent.svg';
 import Logo from './assets/icons/hipcamp-logo.svg';
 import MailIcon from './assets/icons/mail-icon.svg';
 import SendPlane from './assets/icons/send-plane-icon.svg';
+import UpArrow from './assets/icons/orange-up-arrow.svg';
+import GooglePlayBadge from './assets/images/google_play_badge.png';
+import AppleStoreBadge from './assets/images/apple_store_badge.png';
+
+import './App.scss';
 
 export const App = () => {
 	const [email, setEmail] = useState('');
@@ -15,8 +21,12 @@ export const App = () => {
 
 	const handleSendEmail = () => {
 		if (email.trim() === '') return;
-		console.log('Email sent!');
+		cogoToast.loading('Sending...', { hideAfter: 2 }).then(() => {
+			cogoToast.success('Email sent!');
+		});
 	};
+
+	const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
 	return (
 		<div className='app-component'>
@@ -111,6 +121,50 @@ export const App = () => {
 					<img src={Tent} alt='Camping tent in the woods' />
 				</div>
 			</section>
+			<footer>
+				<button className='up-arrow-button' onClick={scrollToTop}>
+					<img src={UpArrow} alt='' />
+				</button>
+				<div className='footer-left-side'>
+					<h3>Hipcamp is everywhere you want to camp.</h3>
+					<p>
+						Discover unique experiences on ranches, nature preserves, farms,
+						vineyards, and public campgrounds across the U.S. Book tent camping,
+						treehouses, cabins, yurts, primitive backcountry sites, car camping,
+						airstreams, tiny houses, RV camping, glamping tents and more.
+					</p>
+					<h3>Download Our App</h3>
+					<div className='store-badges-container'>
+						<img src={GooglePlayBadge} alt='Google Play Store' />
+						<img src={AppleStoreBadge} alt='Apple Store' />
+					</div>
+				</div>
+				<div className='footer-links-container'>
+					<div>
+						<h3>Get to Know Us</h3>
+						<a href='#'>About Us</a>
+						<a href='#'>Rules & Reservation Policies</a>
+						<a href='#'>Accessibility</a>
+						<a href='#'>Media Center</a>
+						<a href='#'>Site Map</a>
+					</div>
+					<div>
+						<h3>Plan with Us</h3>
+						<a href='#'>Find Trip Inspiration</a>
+						<a href='#'>Build a Trip</a>
+						<a href='#'>Buy a Pass</a>
+						<a href='#'>Enter a Lottery</a>
+					</div>
+					<div>
+						<h3>Let Us Help You</h3>
+						<a href='#'>Your Account</a>
+						<a href='#'>Your Reservations</a>
+						<a href='#'>Contact Us</a>
+						<a href='#'>Help Center</a>
+						<a href='#'>Submit Feedback</a>
+					</div>
+				</div>
+			</footer>
 		</div>
 	);
 };
