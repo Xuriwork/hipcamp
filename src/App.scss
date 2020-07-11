@@ -32,6 +32,52 @@ h4 {
 	height: 100%;
 }
 
+nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 100px;
+	max-width: 95%;
+	margin: 0 auto;
+
+	.left-nav {
+		display: flex;
+		align-items: center;
+
+		img {
+			margin-right: 30px;
+			width: 45px;
+		}
+
+		ul {
+			display: flex;
+
+			li {
+				cursor: pointer;
+
+				&:not(:last-of-type) {
+					margin-right: 30px;
+				}
+			}
+		}
+	}
+
+	.right-nav {
+		button {
+			background-color: transparent;
+
+			border-radius: 20px;
+			font-weight: 500;
+
+			&:nth-of-type(2) {
+				border: 2px solid #ffffff;
+				margin-left: 30px;
+				padding: 10px 30px;
+			}
+		}
+	}
+}
+
 .hero-section {
 	background-image: url('./assets/images/hero-section-background.png');
 	width: 100%;
@@ -41,52 +87,6 @@ h4 {
 	background-position: center;
 	background-repeat: no-repeat;
 	color: #fff;
-
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		height: 100px;
-		max-width: 95%;
-		margin: 0 auto;
-
-		.left-nav {
-			display: flex;
-			align-items: center;
-
-			img {
-				margin-right: 30px;
-				width: 45px;
-			}
-
-			ul {
-				display: flex;
-
-				li {
-					cursor: pointer;
-
-					&:not(:last-of-type) {
-						margin-right: 30px;
-					}
-				}
-			}
-		}
-
-		.right-nav {
-			button {
-				background-color: transparent;
-
-				border-radius: 20px;
-				font-weight: 500;
-
-				&:nth-of-type(2) {
-					border: 2px solid #ffffff;
-					margin-left: 30px;
-					padding: 10px 30px;
-				}
-			}
-		}
-	}
 
 	> div {
 		height: calc(100% - 100px);
@@ -131,11 +131,12 @@ h4 {
 		display: grid;
 		align-content: center;
 		justify-items: center;
-		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		row-gap: 30px;
+		column-gap: 10px;
+		grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
 
 		.card {
-			flex-basis: 25%;
-			max-width: 330px;
+			max-width: 300px;
 			height: 250px;
 			display: flex;
 			align-items: center;
@@ -261,7 +262,7 @@ h4 {
 }
 
 .subscribe-section {
-	background-color: #F8E1DB;
+	background-color: #f8e1db;
 	color: #3b3735;
 	display: flex;
 	align-items: center;
@@ -269,13 +270,14 @@ h4 {
 	max-width: 85%;
 	width: 100%;
 	margin: 40px auto;
-	padding: 35px 100px;
+	padding: 35px 80px;
 	box-sizing: border-box;
 	border-radius: 10px;
-	box-shadow: 5px 6px 15px #3B37350D;
+	box-shadow: 5px 6px 15px #3b37350d;
 	background-image: url('./assets/images/subscribe-blob-background.svg');
-	background-position: -200px;
+	background-position: 100%;
 	background-repeat: no-repeat;
+	background-size: cover;
 
 	h1 {
 		font-size: 2em;
@@ -290,6 +292,7 @@ h4 {
 	.input-container {
 		position: relative;
 		display: inline-block;
+		width: 100%;
 
 		.mail-icon {
 			position: absolute;
@@ -316,27 +319,29 @@ h4 {
 		input {
 			padding: 5px 30px;
 			border-radius: 10px;
-			width: 380px;
-			height: 45px;
+			width: 100%;
+			height: 55px;
 			text-indent: 20px;
+			box-sizing: border-box;
 		}
 	}
 
 	.image-container {
+		margin-left: 25px;
 		img {
-			width: 350px;
+			max-width: 350px;
+			width: 100%;
 		}
 	}
 }
 
 footer {
 	display: flex;
-	align-items: center;
 	position: relative;
 	padding: 70px 130px;
 	margin-top: 80px;
 	box-sizing: border-box;
-	background-color: #F8E1DB;
+	background-color: #f8e1db;
 	border-radius: 120px 120px 0 0;
 
 	.up-arrow-button {
@@ -354,7 +359,9 @@ footer {
 		}
 	}
 
-	.footer-left-side {
+	.footer-hipcamp-info {
+		margin-right: 40px;
+
 		p {
 			max-width: 520px;
 			margin-top: 10px;
@@ -400,5 +407,65 @@ footer {
 				margin-left: 40px;
 			}
 		}
+	}
+}
+
+@media (max-width: 1000px) {
+	nav {
+		.left-nav ul {
+			display: none;
+		}
+	}
+
+	.subscribe-section {
+		
+		.image-container img {
+			display: none;
+		}
+	}
+
+	footer {
+		flex-direction: column-reverse;
+		align-items: center;
+		
+		.footer-links-container {
+			margin-left: 0;
+			margin-bottom: 40px;
+			flex-direction: column;
+			width: 100%;
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+			grid-template-rows: auto;
+			row-gap: 40px;
+			column-gap: 20px;
+			
+			> div {
+				&:not(:first-of-type) {
+					margin-left: 0;
+				}
+			}
+		}
+
+		.footer-hipcamp-info {
+			margin-right: 0;
+			width: 100%;
+		}
+
+		.store-badges-container {
+			display: flex;
+			margin-top: 15px;
+		}
+	}
+}
+
+@media (max-width: 600px) {
+	.subscribe-section {
+		background-image: none;
+		.image-container img {
+			display: none;
+		}
+	}
+	footer .up-arrow-button {
+		right: 45%;
 	}
 }

@@ -125,7 +125,7 @@ export const App = () => {
 				<button className='up-arrow-button' onClick={scrollToTop}>
 					<img src={UpArrow} alt='' />
 				</button>
-				<div className='footer-left-side'>
+				<div className='footer-hipcamp-info'>
 					<h3>Hipcamp is everywhere you want to camp.</h3>
 					<p>
 						Discover unique experiences on ranches, nature preserves, farms,
