@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 import { perksData, destinationsList } from './utils/data';
 import cogoToast from 'cogo-toast';
 
+import Logo from './assets/icons/hipcamp-logo.svg';
+import HamburgerMenuIcon from './assets/icons/hamburger-menu-icon.svg';
 import LocationMarksIcon from './assets/icons/location-to-location-icon.svg';
 import Tent from './assets/images/tent.svg';
-import Logo from './assets/icons/hipcamp-logo.svg';
 import MailIcon from './assets/icons/mail-icon.svg';
 import SendPlane from './assets/icons/send-plane-icon.svg';
 import UpArrow from './assets/icons/orange-up-arrow.svg';
@@ -28,6 +29,10 @@ export const App = () => {
 
 	const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
+	function toggleHamburgerMenu() {
+			
+	};
+
 	return (
 		<div className='app-component'>
 			<section className='hero-section'>
@@ -46,6 +51,15 @@ export const App = () => {
 						</ul>
 					</div>
 					<div className='right-nav'>
+						<button className='hamburger-menu-button'>
+							<img
+								src={HamburgerMenuIcon}
+								alt=''
+								aria-expanded='false'
+								aria-controls='menu'
+								onClick={toggleHamburgerMenu}
+							/>
+						</button>
 						<button>Sign up</button>
 						<button>Sign In</button>
 					</div>
@@ -97,7 +111,7 @@ export const App = () => {
 				<button className='view-all-button'>View all</button>
 			</section>
 			<section className='subscribe-section'>
-				<div>
+				<div className='subscribe-section-left'>
 					<h1>Let's Stay in Touch</h1>
 					<p>
 						Get travel planning ideas, helpful tips, and stories from our

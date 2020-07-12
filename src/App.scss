@@ -35,14 +35,14 @@ h4 {
 nav {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
 	height: 100px;
-	max-width: 95%;
-	margin: 0 auto;
+	width: 100%;
+	box-sizing: border-box;
 
 	.left-nav {
 		display: flex;
 		align-items: center;
+		margin-left: 40px;
 
 		img {
 			margin-right: 30px;
@@ -63,18 +63,28 @@ nav {
 	}
 
 	.right-nav {
-		button {
+		margin-left: auto;
+		margin-right: 20px;
+
+		button:not(.hamburger-menu-button) {
 			background-color: transparent;
 
 			border-radius: 20px;
 			font-weight: 500;
 
-			&:nth-of-type(2) {
-				border: 2px solid #ffffff;
+			&:not(:first-of-type) {
 				margin-left: 30px;
+			}
+
+			&:nth-of-type(3) {
+				border: 2px solid #ffffff;
 				padding: 10px 30px;
 			}
 		}
+	}
+
+	.hamburger-menu-button {
+		display: none;
 	}
 }
 
@@ -375,7 +385,8 @@ footer {
 		.store-badges-container {
 			img {
 				cursor: pointer;
-				width: 165px;
+				width: 100%;
+				max-width: 165px;
 				&:nth-of-type(1) {
 					margin-right: 10px;
 				}
@@ -392,7 +403,7 @@ footer {
 		}
 
 		a {
-			color: #000;
+			color: #8D8D8D;
 
 			&:not(:last-of-type) {
 				margin-bottom: 10px;
@@ -410,16 +421,57 @@ footer {
 	}
 }
 
+@media (max-width: 1270px) {
+	.subscribe-section {
+		padding: 35px 60px;
+		background-position: -175px;
+
+		h1 {
+			font-size: 1.6em;
+		}
+
+		p {
+			font-size: 0.95em;
+		}
+
+		.image-container {
+			margin-left: 100px;
+
+			img {
+				max-width: 350px;
+				width: 100%;
+			}
+		}
+	}
+}
+
 @media (max-width: 1000px) {
 	nav {
-		.left-nav ul {
+		.left-nav ul, .right-nav button:not(.hamburger-menu-button) {
 			display: none;
+		}
+		.hamburger-menu-button {
+			display: block;
+			background-color: #fff;
+			padding: 14px 16px;
+			box-sizing: border-box;
+			border-radius: 20px;
+
+			img {
+				width: 20px;
+			}
 		}
 	}
 
 	.subscribe-section {
-		
-		.image-container img {
+		background-image: none;
+
+		.subscribe-section-left {
+			width: 100%;
+			margin: 0 auto;
+		}
+
+		.image-container {
 			display: none;
 		}
 	}
@@ -427,18 +479,18 @@ footer {
 	footer {
 		flex-direction: column-reverse;
 		align-items: center;
-		
+		padding: 70px 80px;
+
 		.footer-links-container {
 			margin-left: 0;
 			margin-bottom: 40px;
-			flex-direction: column;
 			width: 100%;
 			display: grid;
 			grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 			grid-template-rows: auto;
 			row-gap: 40px;
 			column-gap: 20px;
-			
+
 			> div {
 				&:not(:first-of-type) {
 					margin-left: 0;
@@ -465,7 +517,23 @@ footer {
 			display: none;
 		}
 	}
-	footer .up-arrow-button {
-		right: 45%;
+	footer {
+		padding: 70px 40px;
+
+		.up-arrow-button {
+			right: 45%;
+		}
+
+		.store-badges-container {
+			display: flex;
+			flex-direction: column;
+			margin-top: 15px;
+			
+			img {
+				&:nth-of-type(1) {
+					margin-bottom: 10px;
+				}
+			}
+		}
 	}
 }
