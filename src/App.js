@@ -1,3 +1,4 @@
+/* eslint-disable no-control-regex */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
 import { perksData, destinationsList } from './utils/data';
@@ -16,22 +17,29 @@ import AppleStoreBadge from './assets/images/apple_store_badge.png';
 import './App.scss';
 
 export const App = () => {
+	const [open, setOpen] = useState(false);
 	const [email, setEmail] = useState('');
+
+	const toggleHamburgerMenu = () => setOpen((open) => !open);
 
 	const handleChange = (e) => setEmail(e.target.value);
 
 	const handleSendEmail = () => {
 		if (email.trim() === '') return;
-		cogoToast.loading('Sending...', { hideAfter: 2 }).then(() => {
-			cogoToast.success('Email sent!');
-		});
+		const pattern = new RegExp('[^@ \t\r\n]+@[^@ \t\r\n]+.[^@ \t\r\n]+');
+		const result = pattern.test(email);
+		if (result) {
+			cogoToast.loading('Sending...', { hideAfter: 2 }).then(() => {
+				cogoToast.success('Email sent!');
+			});
+		} else {
+			cogoToast.loading('Loading...', { hideAfter: 2 }).then(() => {
+				cogoToast.error('Invalid email address');
+			});
+		}
 	};
 
 	const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-
-	function toggleHamburgerMenu() {
-			
-	};
 
 	return (
 		<div className='app-component'>
@@ -50,16 +58,29 @@ export const App = () => {
 							<li>Contact us</li>
 						</ul>
 					</div>
-					<div className='right-nav'>
-						<button className='hamburger-menu-button'>
-							<img
-								src={HamburgerMenuIcon}
-								alt=''
-								aria-expanded='false'
-								aria-controls='menu'
-								onClick={toggleHamburgerMenu}
-							/>
+					<div className='nav-mobile'>
+						<button
+							className='hamburger-menu-button'
+							onClick={toggleHamburgerMenu}
+						>
+							<img src={HamburgerMenuIcon} alt='' />
 						</button>
+						{open && (
+							<ul>
+								<li>Sign Up</li>
+								<li>Sign In</li>
+								<li>Home</li>
+								<li>Destination</li>
+								<li>Near me</li>
+								<li>Events</li>
+								<li>Blog</li>
+								<li>Gallery</li>
+								<li>About</li>
+								<li>Contact us</li>
+							</ul>
+						)}
+					</div>
+					<div className='right-nav'>
 						<button>Sign up</button>
 						<button>Sign In</button>
 					</div>
@@ -156,6 +177,14 @@ export const App = () => {
 				<div className='footer-links-container'>
 					<div>
 						<h3>Get to Know Us</h3>
+						<a
+							href='https://www.uplabs.com/badr4231'
+							target='_blank'
+							rel='noopener noreferrer'
+							className='special-link'
+						>
+							Designer
+						</a>
 						<a href='#'>About Us</a>
 						<a href='#'>Rules & Reservation Policies</a>
 						<a href='#'>Accessibility</a>
